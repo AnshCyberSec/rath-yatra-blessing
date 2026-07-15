@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>✨ Rath Yatra - Divine Blessing ✨</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kalinga&family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', 'Kalinga', sans-serif;
+            background: #0a0612;
+        }
+
+        /* ===== SCREENS ===== */
+        .screen {
+            position: fixed;
+            inset: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            z-index: 1;
+        }
+
+        .screen.active {
+            display: flex;
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* ============================================================ */
+        /* SCREEN 1 - FULL BACKGROUND.PNG + TEXT                        */
+        /* ============================================================ */
+        #screen1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .bg-full {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .overlay-soft {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .screen1-content {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .screen1-content .greeting {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: #f5d78a;
+            text-shadow: 0 0 40px rgba(232, 184, 75, 0.3);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .screen1-content .sub-text {
+            font-family: 'Kalinga', serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .screen1-content .wish-text {
+            font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 3px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .screen1-content .wish-text span {
+            color: #f5d78a;
+            font-weight: 600;
+        }
+
+        .btn-simple {
+            padding: 16px 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #f5d78a, #e8b84b);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(232, 184, 75, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-simple:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 45px rgba(232, 184, 75, 0.4);
+        }
+
+        .btn-simple:active {
+            transform: scale(0.96);
+        }
+
+        .btn-simple i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-simple:hover i {
+            transform: translateX(6px);
+        }
+
+
+        /* ============================================================ */
+        /* SCREEN 2 - CARTS WITH ROPES + IMAGES                         */
+        /* ============================================================ */
+        #screen2 {
+            background: linear-gradient(180deg, #0a1228 0%, #141f44 35%, #1a2a5a 65%, #0f1a3a 100%);
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .sky-simple {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .sun-simple {
+            position: absolute;
+            top: 50px;
+            right: 80px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ffdd77, #f0a500 50%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 80px rgba(240, 165, 0, 0.3);
+            animation: sunGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes sunGlow {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .ground-simple {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(180deg, #1a2a3a, #0f1a2a);
+            z-index: 2;
+        }
+
+        .rath-group {
+            position: absolute;
+            display: flex;
+            align-items: flex-end;
+            z-index: 5;
+            animation: rathMove linear forwards;
+        }
+
+        #cart1 { bottom: 65px; left: -450px; animation-duration: 8s; }
+        #cart2 { bottom: 130px; left: -500px; animation-duration: 8.5s; animation-delay: 0.3s; }
+        #cart3 { bottom: 30px; left: -550px; animation-duration: 9s; animation-delay: 0.6s; }
+
+        @keyframes rathMove {
+            0% { transform: translateX(0) scale(0.85); }
+            50% { transform: translateX(55vw) scale(1); }
+            100% { transform: translateX(calc(100vw + 200px)) scale(0.85); }
+        }
+
+        .devotees-group {
+            display: flex;
+            align-items: flex-end;
+            margin-right: 2px;
+        }
+
+        .devotee {
+            font-size: 2rem;
+            margin: 0 -3px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+            animation: walk 0.5s ease-in-out infinite;
+        }
+
+        .devotee:nth-child(1) { animation-delay: 0s; }
+        .devotee:nth-child(2) { animation-delay: 0.1s; }
+        .devotee:nth-child(3) { animation-delay: 0.2s; }
+        .devotee:nth-child(4) { animation-delay: 0.3s; }
+        .devotee:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes walk {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-6px) rotate(1deg); }
+        }
+
+        .rope-simple {
+            width: 70px;
+            height: 5px;
+            margin-bottom: 30px;
+            background: repeating-linear-gradient(90deg, #8a7a5a 0px, #b8a070 6px, #8a7a5a 12px, #6a5a3a 18px);
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: ropeSway 0.4s ease-in-out infinite;
+            transform-origin: left center;
+        }
+
+        @keyframes ropeSway {
+            0%, 100% { transform: rotate(-0.5deg); }
+            50% { transform: rotate(1deg); }
+        }
+
+        .cart-simple {
+            position: relative;
+            width: 150px;
+            height: 110px;
+        }
+
+        .cart-body-simple {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px 6px 0 0;
+            border: 2px solid rgba(255, 215, 106, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .cart-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .balbhadra .cart-body-simple { background: linear-gradient(180deg, #2a6a3a, #3a8a4a); border-color: #e8a040; }
+        .subhadra .cart-body-simple { background: linear-gradient(180deg, #c97a20, #e89a30); border-color: #1a2a5a; }
+        .jagannath .cart-body-simple { background: linear-gradient(180deg, #1a3a7a, #2a5a9a); border-color: #e8b84b; }
+
+        .cart-roof-simple {
+            position: absolute;
+            top: -20px;
+            left: -6px;
+            width: calc(100% + 12px);
+            height: 22px;
+            background: linear-gradient(180deg, #f5d78a, #c9922e);
+            border-radius: 4px 4px 0 0;
+            border: 1px solid rgba(255, 215, 106, 0.2);
+        }
+
+        .cart-flag-simple {
+            position: absolute;
+            top: -36px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 16px;
+            background: #ff6b4a;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            animation: flagWave 0.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 74, 0.4));
+        }
+
+        @keyframes flagWave {
+            0%, 100% { transform: translateX(-50%) rotate(-4deg); }
+            50% { transform: translateX(-50%) rotate(4deg); }
+        }
+
+        .cart-wheel-simple {
+            position: absolute;
+            bottom: -12px;
+            width: 22px;
+            height: 22px;
+            background: radial-gradient(circle, #3a3a3a, #1a1a1a);
+            border-radius: 50%;
+            border: 2px solid #e8b84b;
+            animation: wheelSpin 0.6s linear infinite;
+        }
+
+        @keyframes wheelSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cart-wheel-simple.front { right: -6px; }
+        .cart-wheel-simple.back { left: -6px; }
+
+        .aura-simple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(255, 215, 106, 0.25) 0%, rgba(255, 215, 106, 0.08) 40%, transparent 70%);
+            filter: blur(20px);
+            animation: auraGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes auraGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+
+        /* ============================================================ */
+        /* SCREEN 3 - SIMPLE BLESSING MESSAGE                           */
+        /* ============================================================ */
+        #screen3 {
+            background: linear-gradient(160deg, #0a0612 0%, #1a0a1a 30%, #2a0a18 60%, #1a0610 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .divine-ray-simple {
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(ellipse at 100% 0%, rgba(255, 215, 106, 0.12) 0%, rgba(255, 215, 106, 0.04) 30%, transparent 60%);
+            z-index: 1;
+            animation: rayGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes rayGlow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .bless-container-simple {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 30px;
+            max-width: 650px;
+            width: 100%;
+        }
+
+        .bless-title-simple {
+            margin-bottom: 25px;
+        }
+
+        .bless-title-simple h1 {
+            font-family: 'Kalinga', serif;
+            font-size: 3rem;
+            background: linear-gradient(180deg, #f5e6d3, #e8b84b, #c9922e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 30px rgba(232, 184, 75, 0.2));
+        }
+
+        .bless-title-simple h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .bless-card-simple {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 106, 0.08);
+            border-radius: 16px;
+            padding: 30px 35px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: cardFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .bless-card-simple p {
+            font-family: 'Kalinga', serif;
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: rgba(255, 235, 210, 0.85);
+            margin-bottom: 15px;
+        }
+
+        .bless-card-simple p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bless-signature-simple {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: rgba(255, 215, 106, 0.4);
+            letter-spacing: 3px;
+        }
+
+        .bless-signature-simple span {
+            margin: 0 8px;
+        }
+
+
+        /* ============================================================ */
+        /* NAVIGATION DOTS                                               */
+        /* ============================================================ */
+        .nav-dots-simple {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            display: flex;
+            gap: 14px;
+            background: rgba(10, 6, 18, 0.5);
+            padding: 8px 18px;
+            border-radius: 30px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 215, 106, 0.06);
+        }
+
+        .dot-simple {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .dot-simple:hover {
+            transform: scale(1.3);
+            background: rgba(255, 215, 106, 0.3);
+        }
+
+        .dot-simple.active {
+            background: #e8b84b;
+            box-shadow: 0 0 20px rgba(232, 184, 75, 0.3);
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .screen1-content .greeting { font-size: 2rem; }
+            .screen1-content .sub-text { font-size: 1.5rem; }
+            .btn-simple { padding: 14px 35px; font-size: 1rem; }
+            .cart-simple { transform: scale(0.7); }
+            .bless-title-simple h1 { font-size: 2.2rem; }
+            .bless-card-simple p { font-size: 1rem; }
+            .bless-card-simple { padding: 20px 22px; }
+            .devotee { font-size: 1.5rem; }
+            .sun-simple { width: 60px; height: 60px; top: 30px; right: 30px; }
+        }
+
+        @media (max-width: 480px) {
+            .screen1-content .greeting { font-size: 1.5rem; }
+            .screen1-content .sub-text { font-size: 1.2rem; }
+            .screen1-content .wish-text { font-size: 0.8rem; }
+            .btn-simple { padding: 12px 28px; font-size: 0.85rem; }
+            .cart-simple { transform: scale(0.5); }
+            .bless-title-simple h1 { font-size: 1.8rem; }
+            .bless-card-simple p { font-size: 0.85rem; }
+            .bless-card-simple { padding: 16px 18px; }
+            .devotee { font-size: 1.2rem; }
+            .sun-simple { width: 40px; height: 40px; top: 20px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- SCREEN 1 : BACKGROUND.PNG FULL SCREEN + TEXT                  -->
+    <!-- ============================================================ -->
+    <section id="screen1" class="screen active">
+        <img src="assets/images/background.png" alt="Background" class="bg-full" />
+        <div class="overlay-soft"></div>
+        
+        <div class="screen1-content">
+            <p class="greeting">🌅 Hi Morning,</p>
+            <h1 class="sub-text">ରଥଯାତ୍ରା</h1>
+            <p class="sub-text" style="font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2.5vw, 2rem); color: #f5d78a;">
+                Happy Rath Yatra
+            </p>
+            <p class="wish-text">
+                ✨ A small wish from <span>Anshuman's</span> side ✨
+            </p>
+            
+            <button id="magicBtn" class="btn-simple">
+                <span>Begin Journey</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- SCREEN 2 : CARTS WITH ROPES + IMAGES                          -->
+    <!-- ============================================================ -->
+    <section id="screen2" class="screen">
+        <div class="sky-simple">
+            <div class="sun-simple"></div>
+        </div>
+        <div class="ground-simple"></div>
+
+        <div class="rath-group" id="cart1">
+            <div class="devotees-group">
+                <span class="devotee">🙍🏽</span>
+                <span class="devotee">🙍🏻</span>
+                <span class="devotee">🙍🏾</span>
+                <span class="devotee">🙍🏽‍♂️</span>
+            </div>
+            <div class="rope-simple"></div>
+            <div class="cart-simple balbhadra">
+                <div class="cart-body-simple">
+                    <img src="assets/images/balbhadra-cart.png" alt="Balbhadra Cart" class="cart-img" />
+                    <div class="cart-roof-simple"></div>
+                    <div class="cart-flag-simple"></div>
+                    <div class="cart-wheel-simple front"></div>
+                    <div class="cart-wheel-simple back"></div>
+                </div>
+                <div class="aura-simple"></div>
+            </div>
+        </div>
+
+        <div class="rath-group" id="cart2">
+            <div class="devotees-group">
+                <span class="devotee">🙍🏼‍♀️</span>
+                <span class="devotee">🙍🏽</span>
+                <span class="devotee">🙍🏻‍♂️</span>
+            </div>
+            <div class="rope-simple"></div>
+            <div class="cart-simple subhadra">
+                <div class="cart-body-simple">
+                    <img src="assets/images/subhadra-cart.png" alt="Subhadra Cart" class="cart-img" />
+                    <div class="cart-roof-simple"></div>
+                    <div class="cart-flag-simple"></div>
+                    <div class="cart-wheel-simple front"></div>
+                    <div class="cart-wheel-simple back"></div>
+                </div>
+                <div class="aura-simple"></div>
+            </div>
+        </div>
+
+        <div class="rath-group" id="cart3">
+            <div class="devotees-group">
+                <span class="devotee">🙍🏾‍♂️</span>
+                <span class="devotee">🙍🏽</span>
+                <span class="devotee">🙍🏻</span>
+                <span class="devotee">🙍🏼‍♀️</span>
+                <span class="devotee">🙍🏽‍♂️</span>
+            </div>
+            <div class="rope-simple"></div>
+            <div class="cart-simple jagannath">
+                <div class="cart-body-simple">
+                    <img src="assets/images/jagannath-cart.png" alt="Jagannath Cart" class="cart-img" />
+                    <div class="cart-roof-simple"></div>
+                    <div class="cart-flag-simple"></div>
+                    <div class="cart-wheel-simple front"></div>
+                    <div class="cart-wheel-simple back"></div>
+                </div>
+                <div class="aura-simple"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- SCREEN 3 : SIMPLE BLESSING MESSAGE                            -->
+    <!-- ============================================================ -->
+    <section id="screen3" class="screen">
+        <div class="divine-ray-simple"></div>
+        
+        <div class="bless-container-simple">
+            <div class="bless-title-simple">
+                <h2>Divine Blessing</h2>
+            </div>
+
+            <div class="bless-card-simple">
+                <p>
+                    Some prayers don't need names...<br />
+                    Lord Jagannath already knows<br />
+                    who they're meant for. 🌸✨
+                </p>
+                <p>
+                    May He always protect your smile,<br />
+                    guide your journey,<br />
+                    and bless every dream<br />
+                    that quietly lives in your heart. 🙏✨
+                </p>
+                <div class="bless-signature-simple">
+                    <span>🙏</span> Jai Jagannath <span>🙏</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- NAVIGATION DOTS                                               -->
+    <!-- ============================================================ -->
+    <div class="nav-dots-simple">
+        <span class="dot-simple active" data-screen="1"></span>
+        <span class="dot-simple" data-screen="2"></span>
+        <span class="dot-simple" data-screen="3"></span>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- AUDIO - LOCAL FILE USE KARO                                  -->
+    <!-- ============================================================ -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="assets/sounds/background-music.mp3" type="audio/mpeg" />
+        <!-- Agar MP3 na chale toh ye fallback -->
+        <source src="assets/sounds/background-music.wav" type="audio/wav" />
+    </audio>
+
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                        -->
+    <!-- ============================================================ -->
+    <script>
+        // ================================================================
+        // RATH YATRA - COMPLETE JAVASCRIPT WITH AUTO-TRANSITION & AUDIO
+        // ================================================================
+
+        let currentScreen = 1;
+        let totalScreens = 3;
+        let isTransitioning = false;
+        let autoTransitionTimer = null;
+        let cartCheckInterval = null;
+
+        // ===== AUDIO VARIABLE =====
+        let audio = null;
+        let isAudioPlaying = false;
+
+        const screens = {
+            1: document.getElementById('screen1'),
+            2: document.getElementById('screen2'),
+            3: document.getElementById('screen3')
+        };
+
+        const dots = document.querySelectorAll('.dot-simple');
+        const magicBtn = document.getElementById('magicBtn');
+
+        // ================================================================
+        // AUDIO FUNCTIONS
+        // ================================================================
+        function initAudio() {
+            audio = document.getElementById('bgAudio');
+            if (!audio) {
+                console.warn('⚠️ Audio element not found!');
+                return;
+            }
+            
+            // Volume set (0.0 to 1.0)
+            audio.volume = 0.5;
+            
+            // Load audio
+            audio.load();
+            
+            console.log('🎵 Audio initialized');
+        }
+
+        function playAudio() {
+            if (!audio) return;
+            
+            // Already playing
+            if (isAudioPlaying) return;
+            
+            // Try to play
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        isAudioPlaying = true;
+                        console.log('🎵 Audio started playing');
+                    })
+                    .catch((error) => {
+                        console.log('⚠️ Audio error:', error.message);
+                        // Browser ne block kiya - user interaction pe play hoga
+                    });
+            }
+        }
+
+        function stopAudio() {
+            if (!audio) return;
+            
+            audio.pause();
+            audio.currentTime = 0;
+            isAudioPlaying = false;
+            console.log('🎵 Audio stopped');
+        }
+
+        // ================================================================
+        // NAVIGATION
+        // ================================================================
+        function goToScreen(screenNumber) {
+            if (isTransitioning || screenNumber === currentScreen) return;
+            isTransitioning = true;
+
+            console.log('🔄 Going to screen:', screenNumber);
+
+            if (autoTransitionTimer) {
+                clearTimeout(autoTransitionTimer);
+                autoTransitionTimer = null;
+            }
+            if (cartCheckInterval) {
+                clearInterval(cartCheckInterval);
+                cartCheckInterval = null;
+            }
+
+            Object.values(screens).forEach(screen => {
+                if (screen) screen.classList.remove('active');
+            });
+
+            const target = screens[screenNumber];
+            if (target) {
+                target.classList.add('active');
+                console.log('✅ Screen', screenNumber, 'activated');
+            } else {
+                console.error('❌ Screen', screenNumber, 'not found!');
+                isTransitioning = false;
+                return;
+            }
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === screenNumber);
+            });
+
+            currentScreen = screenNumber;
+
+            if (screenNumber === 2) {
+                resetCarts();
+                startCartCompletionCheck();
+                // Play audio when screen 2 opens
+                playAudio();
+            } else if (screenNumber === 3) {
+                // Audio continues playing
+            } else if (screenNumber === 1) {
+                stopAudio();
+            }
+
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 800);
+        }
+
+        // ================================================================
+        // CART COMPLETION CHECK
+        // ================================================================
+        function startCartCompletionCheck() {
+            if (cartCheckInterval) {
+                clearInterval(cartCheckInterval);
+            }
+
+            const cart3 = document.getElementById('cart3');
+            let maxDuration = 9000;
+            
+            if (cart3) {
+                const style = window.getComputedStyle(cart3);
+                const animDuration = style.animationDuration;
+                if (animDuration) {
+                    const durationInSeconds = parseFloat(animDuration);
+                    if (!isNaN(durationInSeconds)) {
+                        maxDuration = durationInSeconds * 1000;
+                    }
+                }
+            }
+
+            console.log('⏱️ Cart animation will complete in:', maxDuration, 'ms');
+
+            autoTransitionTimer = setTimeout(() => {
+                console.log('🚀 Carts completed! Opening Screen 3...');
+                if (currentScreen === 2) {
+                    goToScreen(3);
+                }
+            }, maxDuration + 500);
+
+            let checkCount = 0;
+            cartCheckInterval = setInterval(() => {
+                checkCount++;
+                const cartElement = document.getElementById('cart3');
+                if (cartElement) {
+                    const transform = window.getComputedStyle(cartElement).transform;
+                    if (transform && transform !== 'none') {
+                        const matrix = transform.match(/matrix.*\((.+)\)/);
+                        if (matrix) {
+                            const values = matrix[1].split(', ');
+                            const translateX = parseFloat(values[4] || values[12] || 0);
+                            if (translateX > window.innerWidth * 0.3) {
+                                // Cart is moving
+                            }
+                        }
+                    }
+                }
+                
+                if (checkCount > 20) {
+                    clearInterval(cartCheckInterval);
+                    cartCheckInterval = null;
+                }
+            }, 1000);
+        }
+
+        // ================================================================
+        // RESET CARTS
+        // ================================================================
+        function resetCarts() {
+            const carts = document.querySelectorAll('.rath-group');
+            carts.forEach(cart => {
+                cart.style.animation = 'none';
+                void cart.offsetHeight;
+                cart.style.animation = '';
+            });
+        }
+
+        // ================================================================
+        // BUTTON CLICK
+        // ================================================================
+        if (magicBtn) {
+            magicBtn.addEventListener('click', function(e) {
+                // Pehle audio play karo (user interaction required)
+                if (!isAudioPlaying && audio) {
+                    playAudio();
+                }
+                
+                this.disabled = true;
+                this.style.opacity = '0.7';
+
+                setTimeout(() => {
+                    this.disabled = false;
+                    this.style.opacity = '1';
+                    goToScreen(2);
+                }, 400);
+            });
+        }
+
+        // ================================================================
+        // DOTS CLICK
+        // ================================================================
+        dots.forEach((dot) => {
+            dot.addEventListener('click', function() {
+                const screenNum = parseInt(this.dataset.screen);
+                if (!isNaN(screenNum) && screenNum !== currentScreen) {
+                    if (screenNum === 2 && !isAudioPlaying) {
+                        playAudio();
+                    }
+                    if (screenNum === 1 && isAudioPlaying) {
+                        stopAudio();
+                    }
+                    goToScreen(screenNum);
+                }
+            });
+        });
+
+        // ================================================================
+        // KEYBOARD
+        // ================================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                const next = currentScreen < totalScreens ? currentScreen + 1 : 1;
+                goToScreen(next);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const prev = currentScreen > 1 ? currentScreen - 1 : totalScreens;
+                goToScreen(prev);
+            }
+        });
+
+        // ================================================================
+        // SWIPE
+        // ================================================================
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function(e) {
+            const diffX = touchStartX - e.changedTouches[0].screenX;
+            const diffY = Math.abs(touchStartY - e.changedTouches[0].screenY);
+            
+            if (Math.abs(diffX) > 50 && diffY < 100) {
+                if (diffX > 0) {
+                    const next = currentScreen < totalScreens ? currentScreen + 1 : 1;
+                    goToScreen(next);
+                } else {
+                    const prev = currentScreen > 1 ? currentScreen - 1 : totalScreens;
+                    goToScreen(prev);
+                }
+            }
+        }, { passive: true });
+
+        // ================================================================
+        // PHOTO FALLBACK
+        // ================================================================
+        const bgPhoto = document.querySelector('.bg-full');
+        if (bgPhoto) {
+            bgPhoto.addEventListener('error', function() {
+                console.warn('⚠️ background.png not found');
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.style.cssText = `
+                    position: absolute;
+                    inset: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 4rem;
+                    background: radial-gradient(circle, #1a0a1a, #0a0612);
+                    color: #f5d78a;
+                    z-index: 1;
+                `;
+                fallback.textContent = '🌅';
+                this.parentNode.insertBefore(fallback, this.nextSibling);
+            });
+        }
+
+        // ================================================================
+        // CART IMAGE FALLBACK
+        // ================================================================
+        document.querySelectorAll('.cart-img').forEach(img => {
+            img.addEventListener('error', function() {
+                console.warn('⚠️ Cart image not found:', this.src);
+                this.style.display = 'none';
+            });
+        });
+
+        // ================================================================
+        // INIT
+        // ================================================================
+        function init() {
+            initAudio();
+            
+            console.log('✨ Rath Yatra - With Audio!');
+            console.log('🙏 Jai Jagannath!');
+            console.log('📍 Current screen:', currentScreen);
+            console.log('💡 Carts will auto-open Screen 3 when finished!');
+            console.log('🎵 Audio will play on Screen 2');
+        }
+
+        init();
+    </script>
+
+</body>
+</html>

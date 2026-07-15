@@ -1,0 +1,963 @@
+/* ================================================================ */
+/* RATH YATRA - MOBILE OPTIMIZED CSS                               */
+/* Clean, Modern, Production-Ready                                 */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. CSS VARIABLES (Design System)                                */
+/* ================================================================ */
+:root {
+    /* Colors - Primary */
+    --color-gold: #e8b84b;
+    --color-gold-light: #f5d78a;
+    --color-gold-dark: #c9922e;
+    --color-gold-gradient: linear-gradient(135deg, #f5d78a, #e8b84b, #d4a03a);
+    
+    /* Colors - Dark */
+    --color-dark: #0a0612;
+    --color-dark-2: #1a0a1a;
+    --color-dark-3: #2a0a18;
+    
+    /* Colors - Ocean */
+    --color-ocean-dark: #0a1628;
+    --color-ocean-mid: #1a2a5a;
+    --color-ocean-light: #3a5a8a;
+    
+    /* Colors - Text */
+    --color-text-primary: #faf6f0;
+    --color-text-secondary: rgba(255, 235, 210, 0.85);
+    --color-text-muted: rgba(255, 255, 255, 0.4);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 8px 30px rgba(232, 184, 75, 0.25);
+    --shadow-glow-hover: 0 12px 45px rgba(232, 184, 75, 0.4);
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Typography */
+    --font-primary: 'Inter', 'Kalinga', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-odia: 'Kalinga', serif;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Z-Index Scale */
+    --z-base: 1;
+    --z-above: 2;
+    --z-high: 5;
+    --z-higher: 10;
+    --z-highest: 100;
+    --z-overlay: 999;
+    --z-max: 9999;
+}
+
+/* ================================================================ */
+/* 2. RESET & BASE                                                  */
+/* ================================================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Mobile touch improvements */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-primary);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    background: var(--color-dark);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    /* Prevent zoom on double tap */
+    touch-action: pan-x pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    /* Prevent image drag on mobile */
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    /* Mobile touch improvements */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ================================================================ */
+/* 3. SCREEN SYSTEM                                                 */
+/* ================================================================ */
+.screen {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: var(--z-base);
+    overflow: hidden;
+    /* Mobile safe area support */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.screen.active {
+    display: flex;
+    opacity: 1;
+    z-index: var(--z-higher);
+}
+
+/* ================================================================ */
+/* 4. SCREEN 1 - HERO PHOTO BACKGROUND                              */
+/* ================================================================ */
+#screen1 {
+    background: var(--color-dark);
+    position: relative;
+}
+
+.bg-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: var(--z-base);
+    opacity: 0.85;
+    transition: transform 0.3s ease;
+}
+
+.overlay-dark {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: var(--z-above);
+}
+
+.screen1-content {
+    position: relative;
+    z-index: var(--z-high);
+    text-align: center;
+    padding: var(--spacing-2xl);
+    max-width: 700px;
+    width: 100%;
+    animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.screen1-content h1 {
+    font-family: var(--font-odia);
+    font-size: clamp(2rem, 10vw, 4.5rem);
+    font-weight: 700;
+    color: var(--color-gold-light);
+    text-shadow: 0 0 40px rgba(232, 184, 75, 0.3);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 4px;
+}
+
+.screen1-content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(0.9rem, 4vw, 1.8rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 6px;
+    margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+}
+
+.screen1-content p {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--spacing-xl);
+    letter-spacing: 2px;
+}
+
+.btn-simple {
+    padding: 14px 40px;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1a1a2e;
+    background: var(--color-gold-gradient);
+    border: none;
+    border-radius: var(--radius-full);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-glow);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    /* Mobile touch feedback */
+    -webkit-tap-highlight-color: rgba(232, 184, 75, 0.3);
+}
+
+.btn-simple::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.btn-simple:active {
+    transform: scale(0.95);
+}
+
+.btn-simple i {
+    transition: transform 0.3s ease;
+}
+
+.btn-simple:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ================================================================ */
+/* 5. SCREEN 2 - RATH JOURNEY                                       */
+/* ================================================================ */
+#screen2 {
+    background: linear-gradient(180deg, #0a1228 0%, #141f44 35%, #1a2a5a 65%, #0f1a3a 100%);
+    overflow: hidden;
+}
+
+.sky-simple {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-base);
+}
+
+.sun-simple {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: clamp(50px, 12vw, 100px);
+    height: clamp(50px, 12vw, 100px);
+    background: radial-gradient(circle, #ffdd77, #f0a500 50%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(240, 165, 0, 0.3);
+    animation: sunGlow 4s ease-in-out infinite;
+}
+
+@keyframes sunGlow {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+.ground-simple {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(180deg, #1a2a3a, #0f1a2a);
+    z-index: var(--z-above);
+    border-top: 1px solid rgba(255, 215, 106, 0.05);
+}
+
+.rath-group {
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    z-index: var(--z-high);
+    animation: rathMove linear forwards;
+    /* GPU acceleration for smoother animation */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+#cart1 {
+    bottom: 50px;
+    left: -350px;
+    animation-duration: 8s;
+}
+
+#cart2 {
+    bottom: 100px;
+    left: -400px;
+    animation-duration: 8.5s;
+    animation-delay: 0.3s;
+}
+
+#cart3 {
+    bottom: 25px;
+    left: -450px;
+    animation-duration: 9s;
+    animation-delay: 0.6s;
+}
+
+@keyframes rathMove {
+    0% {
+        transform: translateX(0) scale(0.7);
+    }
+    50% {
+        transform: translateX(55vw) scale(0.85);
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px)) scale(0.7);
+    }
+}
+
+.devotees-group {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 2px;
+}
+
+.devotee {
+    font-size: clamp(1rem, 4vw, 2rem);
+    margin: 0 -2px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    animation: walk 0.5s ease-in-out infinite;
+}
+
+.devotee:nth-child(1) { animation-delay: 0s; }
+.devotee:nth-child(2) { animation-delay: 0.1s; }
+.devotee:nth-child(3) { animation-delay: 0.2s; }
+.devotee:nth-child(4) { animation-delay: 0.3s; }
+.devotee:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes walk {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(1deg);
+    }
+}
+
+.rope-simple {
+    width: 50px;
+    height: 4px;
+    margin-bottom: 22px;
+    background: repeating-linear-gradient(
+        90deg,
+        #8a7a5a 0px,
+        #b8a070 5px,
+        #8a7a5a 10px,
+        #6a5a3a 15px
+    );
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: ropeSway 0.4s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+@keyframes ropeSway {
+    0%, 100% {
+        transform: rotate(-0.5deg);
+    }
+    50% {
+        transform: rotate(1deg);
+    }
+}
+
+.cart-simple {
+    position: relative;
+    width: clamp(100px, 25vw, 150px);
+    height: clamp(75px, 18vw, 110px);
+}
+
+.cart-body-simple {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    border: 2px solid rgba(255, 215, 106, 0.3);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.cart-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.balbhadra .cart-body-simple {
+    background: linear-gradient(180deg, #2a6a3a, #3a8a4a);
+    border-color: #e8a040;
+}
+
+.subhadra .cart-body-simple {
+    background: linear-gradient(180deg, #c97a20, #e89a30);
+    border-color: #1a2a5a;
+}
+
+.jagannath .cart-body-simple {
+    background: linear-gradient(180deg, #1a3a7a, #2a5a9a);
+    border-color: var(--color-gold);
+}
+
+.cart-roof-simple {
+    position: absolute;
+    top: -16px;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: 16px;
+    background: linear-gradient(180deg, var(--color-gold-light), var(--color-gold-dark));
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    border: 1px solid rgba(255, 215, 106, 0.2);
+}
+
+.cart-flag-simple {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 12px;
+    background: #ff6b4a;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    animation: flagWave 0.8s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 107, 74, 0.4));
+}
+
+@keyframes flagWave {
+    0%, 100% {
+        transform: translateX(-50%) rotate(-4deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(4deg);
+    }
+}
+
+.cart-wheel-simple {
+    position: absolute;
+    bottom: -10px;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #3a3a3a, #1a1a1a);
+    border-radius: 50%;
+    border: 2px solid var(--color-gold);
+    animation: wheelSpin 0.6s linear infinite;
+}
+
+@keyframes wheelSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cart-wheel-simple.front {
+    right: -5px;
+}
+
+.cart-wheel-simple.back {
+    left: -5px;
+}
+
+.aura-simple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    z-index: -1;
+    background: radial-gradient(
+        circle,
+        rgba(255, 215, 106, 0.25) 0%,
+        rgba(255, 215, 106, 0.08) 40%,
+        transparent 70%
+    );
+    filter: blur(20px);
+    animation: auraGlow 3s ease-in-out infinite;
+}
+
+@keyframes auraGlow {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* ================================================================ */
+/* 6. SCREEN 3 - DIVINE BLESSING                                    */
+/* ================================================================ */
+#screen3 {
+    background: linear-gradient(160deg, #0a0612 0%, #1a0a1a 30%, #2a0a18 60%, #1a0610 100%);
+    position: relative;
+}
+
+.divine-ray-simple {
+    position: absolute;
+    top: -20%;
+    right: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(
+        ellipse at 100% 0%,
+        rgba(255, 215, 106, 0.12) 0%,
+        rgba(255, 215, 106, 0.04) 30%,
+        transparent 60%
+    );
+    z-index: var(--z-base);
+    animation: rayGlow 4s ease-in-out infinite;
+}
+
+@keyframes rayGlow {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.bless-container-simple {
+    position: relative;
+    z-index: var(--z-high);
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    max-width: 650px;
+    width: 100%;
+}
+
+.bless-title-simple {
+    margin-bottom: var(--spacing-lg);
+}
+
+.bless-title-simple h1 {
+    font-family: var(--font-odia);
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    background: linear-gradient(180deg, #f5e6d3, var(--color-gold), var(--color-gold-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 30px rgba(232, 184, 75, 0.2));
+}
+
+.bless-title-simple h2 {
+    font-family: var(--font-display);
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    font-weight: 300;
+    color: var(--color-text-muted);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+.bless-card-simple {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 215, 106, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg) var(--spacing-md);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-lg);
+    animation: cardFloat 5s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+.bless-card-simple p {
+    font-family: var(--font-odia);
+    font-size: clamp(0.85rem, 3vw, 1.2rem);
+    line-height: 2;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.bless-card-simple p:last-child {
+    margin-bottom: 0;
+}
+
+.bless-card-simple .eng-msg {
+    font-family: var(--font-primary);
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    line-height: 1.8;
+    color: rgba(255, 235, 210, 0.6);
+    font-weight: 300;
+}
+
+.bless-card-simple .eng-msg strong {
+    color: var(--color-gold-light);
+    font-weight: 600;
+}
+
+.bless-signature-simple {
+    margin-top: var(--spacing-md);
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    color: rgba(255, 215, 106, 0.4);
+    letter-spacing: 3px;
+}
+
+.bless-signature-simple span {
+    margin: 0 var(--spacing-sm);
+}
+
+/* ================================================================ */
+/* 7. NAVIGATION DOTS - MOBILE FRIENDLY                            */
+/* ================================================================ */
+.nav-dots-simple {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--z-highest);
+    display: flex;
+    gap: 14px;
+    background: rgba(10, 6, 18, 0.6);
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 106, 0.06);
+    /* Mobile touch improvements */
+    touch-action: manipulation;
+}
+
+.dot-simple {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    /* Mobile touch improvements */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(232, 184, 75, 0.3);
+}
+
+.dot-simple:active {
+    transform: scale(0.8);
+}
+
+.dot-simple.active {
+    background: var(--color-gold);
+    box-shadow: 0 0 20px rgba(232, 184, 75, 0.3);
+    animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+/* ================================================================ */
+/* 8. ANIMATIONS                                                    */
+/* ================================================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ================================================================ */
+/* 9. MOBILE FIRST RESPONSIVE DESIGN                                */
+/* ================================================================ */
+
+/* Small Mobile (iPhone SE, etc) */
+@media (max-width: 380px) {
+    .screen1-content {
+        padding: var(--spacing-md);
+    }
+    
+    .screen1-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .screen1-content h2 {
+        font-size: 0.8rem;
+        letter-spacing: 4px;
+    }
+    
+    .btn-simple {
+        padding: 10px 24px;
+        font-size: 0.8rem;
+        gap: 8px;
+    }
+    
+    .cart-simple {
+        transform: scale(0.45);
+    }
+    
+    .bless-card-simple {
+        padding: var(--spacing-sm);
+    }
+    
+    .bless-card-simple p {
+        font-size: 0.75rem;
+        line-height: 1.8;
+    }
+    
+    .devotee {
+        font-size: 0.9rem;
+    }
+    
+    .rope-simple {
+        width: 35px;
+        height: 3px;
+        margin-bottom: 15px;
+    }
+    
+    .nav-dots-simple {
+        padding: 6px 12px;
+        gap: 10px;
+        bottom: var(--spacing-md);
+    }
+    
+    .dot-simple {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .sun-simple {
+        width: 35px;
+        height: 35px;
+        top: 15px;
+        right: 15px;
+    }
+}
+
+/* Mobile Portrait */
+@media (min-width: 381px) and (max-width: 480px) {
+    .screen1-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .screen1-content h2 {
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+    }
+    
+    .btn-simple {
+        padding: 12px 30px;
+        font-size: 0.85rem;
+    }
+    
+    .cart-simple {
+        transform: scale(0.55);
+    }
+    
+    .bless-card-simple p {
+        font-size: 0.85rem;
+    }
+    
+    .devotee {
+        font-size: 1.1rem;
+    }
+    
+    .sun-simple {
+        width: 45px;
+        height: 45px;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+/* Mobile Landscape */
+@media (min-width: 481px) and (max-width: 768px) {
+    .screen1-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .screen1-content h2 {
+        font-size: 1.1rem;
+        letter-spacing: 6px;
+    }
+    
+    .btn-simple {
+        padding: 14px 35px;
+        font-size: 0.95rem;
+    }
+    
+    .cart-simple {
+        transform: scale(0.65);
+    }
+    
+    .bless-card-simple p {
+        font-size: 1rem;
+    }
+    
+    .devotee {
+        font-size: 1.4rem;
+    }
+    
+    .sun-simple {
+        width: 60px;
+        height: 60px;
+        top: 30px;
+        right: 30px;
+    }
+}
+
+/* Tablets and small desktops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .screen1-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .btn-simple {
+        padding: 15px 42px;
+        font-size: 1rem;
+    }
+    
+    .cart-simple {
+        transform: scale(0.8);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+    .btn-simple:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: var(--shadow-glow-hover);
+    }
+    
+    .btn-simple:hover i {
+        transform: translateX(6px);
+    }
+    
+    .dot-simple:hover {
+        transform: scale(1.3);
+        background: rgba(255, 215, 106, 0.3);
+    }
+}
+
+/* ================================================================ */
+/* 10. DARK MODE SUPPORT (Auto)                                     */
+/* ================================================================ */
+@media (prefers-color-scheme: light) {
+    /* Keep dark theme for spiritual experience */
+}
+
+/* ================================================================ */
+/* 11. REDUCED MOTION                                               */
+/* ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .screen {
+        transition: opacity 0.01ms ease;
+    }
+}
+
+/* ================================================================ */
+/* 12. SAFE AREA SUPPORT (Notch phones)                             */
+/* ================================================================ */
+@supports (padding: max(0px)) {
+    .screen {
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        padding-top: max(16px, env(safe-area-inset-top));
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+    
+    .nav-dots-simple {
+        bottom: max(24px, env(safe-area-inset-bottom));
+    }
+}
+
+/* ================================================================ */
+/* 13. PRINT STYLES                                                 */
+/* ================================================================ */
+@media print {
+    .screen {
+        position: static;
+        display: block !important;
+        opacity: 1 !important;
+        z-index: auto !important;
+        page-break-after: always;
+        padding: 20px;
+    }
+    
+    .screen.active {
+        display: block !important;
+    }
+    
+    .bg-photo,
+    .overlay-dark,
+    .nav-dots-simple,
+    .btn-simple {
+        display: none !important;
+    }
+    
+    .bless-card-simple {
+        background: #fff;
+        border: 1px solid #ddd;
+        box-shadow: none;
+    }
+}
